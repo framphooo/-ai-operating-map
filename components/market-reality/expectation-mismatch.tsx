@@ -2,95 +2,147 @@
 
 import SectionReveal from "../learning/SectionReveal";
 
+const EXPECTATION_COLOR = "#556b64"; // muted green-gray
+const ACTUAL_COLOR = "#1bc4a6"; // teal accent
+const BAR_BG = "#d9dddb"; // light gray baseline
+
+function SegmentBar({
+  expected,
+  actual,
+  actualLabel,
+  expectedLabel,
+}: {
+  expected: number;
+  actual: number;
+  actualLabel?: string;
+  expectedLabel?: string;
+}) {
+  const background = `linear-gradient(to right,
+    ${ACTUAL_COLOR} 0%,
+    ${ACTUAL_COLOR} ${actual}%,
+    ${EXPECTATION_COLOR} ${actual}%,
+    ${EXPECTATION_COLOR} ${expected}%,
+    ${BAR_BG} ${expected}%,
+    ${BAR_BG} 100%)`;
+
+  const actualPos = actual / 2;
+  const expectedPos = actual + (expected - actual) / 2;
+
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <div
+        className="relative h-10 rounded-md overflow-hidden shadow-sm"
+        style={{ background }}
+        aria-hidden
+      >
+        <span
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 text-xs font-semibold text-white drop-shadow-sm"
+          style={{ left: `${actualPos}%` }}
+        >
+          {actualLabel ?? `${actual}%`}
+        </span>
+        <span
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 text-xs font-semibold text-white drop-shadow-sm"
+          style={{ left: `${expectedPos}%` }}
+        >
+          {expectedLabel ?? `${expected}%`}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function ExpectationMismatch() {
   return (
-    <section className="py-32 px-6 lg:px-8 bg-white/30">
-      <div className="max-w-5xl mx-auto">
+    <section className="py-24 px-6 lg:px-10 bg-white">
+      <div className="max-w-6xl mx-auto">
         <SectionReveal>
-          {/* One Strong Headline */}
-          <h2 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-16 text-center leading-tight">
-            Expectation Mismatch
-          </h2>
+          <div className="text-center">
+            <h2 className="text-4xl md:text-5xl font-heading font-semibold text-foreground leading-tight">
+              The ROI Gap - Enterprise AI
+            </h2>
+
+            <div className="mt-6 flex items-center justify-center gap-6 text-sm text-foreground/80">
+              <div className="flex items-center gap-2">
+                <span
+                  aria-hidden
+                  className="h-4 w-4 rounded-sm"
+                  style={{ backgroundColor: EXPECTATION_COLOR }}
+                />
+                <span>Expectation</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span
+                  aria-hidden
+                  className="h-4 w-4 rounded-sm"
+                  style={{ backgroundColor: ACTUAL_COLOR }}
+                />
+                <span>Actuals</span>
+              </div>
+            </div>
+          </div>
         </SectionReveal>
 
-        <div className="space-y-20">
-          {/* Revenue Growth - Primary Visual */}
+        <div className="mt-14 grid gap-12 md:grid-cols-2">
           <SectionReveal delay={0.1}>
-            <div className="text-center">
-              <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-8">
+            <div className="flex flex-col items-center text-center space-y-6">
+              <h3 className="text-xl md:text-2xl font-heading font-semibold text-foreground">
                 Revenue Growth
               </h3>
-              
-              {/* Big Numbers Comparison */}
-              <div className="grid md:grid-cols-2 gap-12 mb-8">
-                <div>
-                  <div className="text-6xl md:text-7xl font-heading font-bold text-foreground mb-2 leading-none">
-                    51%
-                  </div>
-                  <p className="text-lg text-secondary">Expected</p>
-                </div>
-                <div>
-                  <div className="text-6xl md:text-7xl font-heading font-bold text-accent mb-2 leading-none">
-                    19%
-                  </div>
-                  <p className="text-lg text-secondary">Actual</p>
-                </div>
-              </div>
 
-              {/* Simple Visual Bar */}
-              <div className="max-w-2xl mx-auto mb-4">
-                <div className="relative h-16 bg-gray-200 rounded-lg overflow-hidden">
-                  <div className="absolute inset-0 bg-gray-400 rounded-lg" style={{ width: '51%' }}></div>
-                  <div className="absolute inset-0 bg-accent rounded-lg" style={{ width: '19%' }}></div>
-                </div>
-              </div>
+              <SegmentBar expected={51} actual={19} />
 
-              <p className="text-sm text-secondary/70">Source: McKinsey & Company</p>
+              <p className="text-base leading-relaxed text-foreground/80 max-w-md">
+                Many organizations expect AI to drive top-line growth, but only a
+                fraction have realized measurable revenue impact – mainly
+                because{" "}
+                <span className="font-semibold text-foreground">
+                  most pilots remain isolated, lack integration with P&amp;L
+                  metrics, and fail to reach production scale.
+                </span>
+              </p>
+
+              <div className="text-sm text-foreground/60">
+                <div>Source: McKinsey &amp; Company</div>
+                <a
+                  href="#"
+                  className="text-primary underline underline-offset-4 font-medium"
+                >
+                  Link
+                </a>
+              </div>
             </div>
           </SectionReveal>
 
-          {/* Cost Reduction - Primary Visual */}
           <SectionReveal delay={0.2}>
-            <div className="text-center">
-              <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-8">
-                Cost Reduction
+            <div className="flex flex-col items-center text-center space-y-6">
+              <h3 className="text-xl md:text-2xl font-heading font-semibold text-foreground">
+                Cost Reduction next 18 months
               </h3>
-              
-              {/* Big Numbers Comparison */}
-              <div className="grid md:grid-cols-2 gap-12 mb-8">
-                <div>
-                  <div className="text-6xl md:text-7xl font-heading font-bold text-foreground mb-2 leading-none">
-                    90%
-                  </div>
-                  <p className="text-lg text-secondary">Expected</p>
-                </div>
-                <div>
-                  <div className="text-6xl md:text-7xl font-heading font-bold text-accent mb-2 leading-none">
-                    &lt;20%
-                  </div>
-                  <p className="text-lg text-secondary">Actual</p>
-                </div>
-              </div>
 
-              {/* Simple Visual Bar */}
-              <div className="max-w-2xl mx-auto mb-4">
-                <div className="relative h-16 bg-gray-200 rounded-lg overflow-hidden">
-                  <div className="absolute inset-0 bg-gray-400 rounded-lg" style={{ width: '90%' }}></div>
-                  <div className="absolute inset-0 bg-accent rounded-lg" style={{ width: '20%' }}></div>
-                </div>
-              </div>
+              <SegmentBar expected={90} actual={20} actualLabel="<20%" />
 
-              <p className="text-sm text-secondary/70">Source: Boston Consulting Group</p>
+              <p className="text-base leading-relaxed text-foreground/80 max-w-md">
+                While AI promises operational efficiency, most companies remain
+                in early stages of cost realization due to{" "}
+                <span className="font-semibold text-foreground">
+                  fragmented data, weak governance, and low cross-functional
+                  adoption.
+                </span>
+              </p>
+
+              <div className="text-sm text-foreground/60">
+                <div>Source: Boston Consulting Group</div>
+                <a
+                  href="#"
+                  className="text-primary underline underline-offset-4 font-medium"
+                >
+                  Link
+                </a>
+              </div>
             </div>
           </SectionReveal>
         </div>
-
-        {/* Minimal Caption */}
-        <SectionReveal delay={0.3}>
-          <p className="text-xl text-foreground text-center max-w-2xl mx-auto mt-16">
-            Disappointment is structural, not technical
-          </p>
-        </SectionReveal>
       </div>
     </section>
   );

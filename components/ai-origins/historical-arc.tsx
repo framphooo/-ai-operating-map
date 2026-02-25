@@ -6,34 +6,71 @@ import { motion } from "framer-motion"
 interface Era {
   period: string
   title: string
-  description: string
+  icon: string
+  intro: string
+  bullets: string[]
 }
 
 const eras: Era[] = [
   {
     period: "1950s–1970s",
     title: "Symbolic AI: Rules and Logic",
-    description: "Early AI systems were built with hand-coded rules and symbolic logic. These systems could appear impressive in narrow domains, such as chess-playing programs, but they were brittle, expensive to maintain, and incapable of adapting when reality changed. Deep Blue's victory over Kasparov in 1997 was not a triumph of intelligence, but an example of brute force computation without learning.",
+    icon: "🧠",
+    intro: "Early AI was hand-written rules.",
+    bullets: [
+      "Engineers wrote every if/then by hand.",
+      "Worked for board games; broke in messy reality.",
+      "Nothing learned—people had to add new rules.",
+      "Costs ballooned as the rule pile grew.",
+    ],
   },
   {
     period: "1980s–1990s",
-    title: "Expert Systems and the Maintenance Wall",
-    description: "As rule-based systems scaled by adding more rules, complexity exploded. These expert systems demonstrated strong performance in controlled environments, but had a strong dependency on human maintenance. When business conditions changed or edge cases appeared, these systems failed. The combinatorial explosion of real-world conditions made exhaustive rule-writing impossible.",
+    title: "Expert Systems: The Maintenance Wall",
+    icon: "🧰",
+    intro: "Rule piles turned into upkeep debt.",
+    bullets: [
+      "Experts talked; coders turned steps into rules.",
+      "Edge cases exploded faster than updates.",
+      "Systems snapped when business logic shifted.",
+      "High upkeep for narrow wins.",
+    ],
   },
   {
     period: "1990s–2010s",
     title: "Machine Learning: Pattern Recognition",
-    description: "Instead of writing rules, engineers began feeding systems large amounts of data so they could detect patterns. This was progress, but incomplete. These systems still required heavy human involvement in labeling data and defining features. The intelligence remained narrow and task-specific—a system that excelled at image recognition could not reason about language.",
+    icon: "📈",
+    intro: "Data began to replace hand-written rules.",
+    bullets: [
+      "Models learned patterns from labeled examples.",
+      "People still crafted features by hand.",
+      "Good at one task at a time.",
+      "Fails when new data looks different from training.",
+    ],
   },
   {
     period: "2012",
-    title: "Inflection Point: Deep Learning + GPUs",
-    description: "2012 marks the inflection point, and understanding why requires understanding hardware, not just algorithms. GPUs enabled massive parallel computation, which made deep neural networks viable at scale. These networks could learn hierarchical representations without engineers explicitly defining what those patterns should be. This was the beginning of the shift from programming to training.",
+    title: "Deep Learning + GPUs",
+    icon: "⚡",
+    intro: "GPUs made deep nets train fast.",
+    bullets: [
+      "Thousands of cores train millions of weights quickly.",
+      "Networks learn their own features.",
+      "ImageNet gains showed scale beats tiny tweaks.",
+      "Shift from coding rules to training behavior.",
+    ],
   },
   {
     period: "2017–Present",
-    title: "Transformers + Generative Models",
-    description: "The introduction of transformer architectures allowed models to understand relationships across entire contexts at once. This enabled language understanding, code generation, reasoning chains, and synthesis. These systems generate outputs probabilistically based on learned patterns, optimizing for plausibility rather than truth. This probabilistic nature sets up why grounding in real data and architectural constraints are needed for reliable operational use.",
+    title: "Transformers & Generative Models",
+    icon: "🌐",
+    intro: "Transformers read whole contexts at once.",
+    bullets: [
+      "One architecture adapts to many tasks.",
+      "Generates answers by guessing likely next words.",
+      "Sounds confident but can be wrong.",
+      "Needs real data grounding to stay accurate.",
+    ],
   },
 ]
 
@@ -160,8 +197,9 @@ export default function HistoricalArc() {
                   transition={{ duration: 0.4 }}
                 >
                   {/* Era Label */}
-                  <div className="text-sm font-semibold text-accent mb-3 tracking-wide uppercase">
-                    {era.period}
+                  <div className="flex flex-col items-start gap-1 text-sm font-semibold text-accent mb-3 tracking-wide uppercase">
+                    <span className="text-3xl leading-none">{era.icon}</span>
+                    <span>{era.period}</span>
                   </div>
 
                   {/* Title */}
@@ -169,10 +207,15 @@ export default function HistoricalArc() {
                     {era.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-base md:text-lg text-secondary leading-relaxed">
-                    {era.description}
+                  {/* Intro + bullets */}
+                  <p className="text-base md:text-lg text-secondary leading-relaxed mb-3">
+                    {era.intro}
                   </p>
+                  <ul className="space-y-2 text-sm md:text-base text-secondary leading-relaxed list-disc list-inside">
+                    {era.bullets.map((point, idx) => (
+                      <li key={idx}>{point}</li>
+                    ))}
+                  </ul>
                 </motion.div>
               </div>
             ))}
@@ -182,4 +225,3 @@ export default function HistoricalArc() {
     </div>
   )
 }
-

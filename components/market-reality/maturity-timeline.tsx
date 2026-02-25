@@ -2,6 +2,8 @@
 
 import SectionReveal from "../learning/SectionReveal";
 
+const GATE_GREEN = "#1bc4a6"; // match GATE letters
+
 export default function MaturityTimeline() {
   const stages = [
     { period: "2020-2023", name: "LLMs" },
@@ -64,13 +66,19 @@ export default function MaturityTimeline() {
 
         <SectionReveal delay={0.1}>
           <div className="relative mb-16">
-            <div className="absolute top-16 left-0 right-0 h-1 bg-accent" />
+            <div
+              className="absolute top-16 left-0 right-0 h-1"
+              style={{ backgroundColor: GATE_GREEN }}
+            />
 
             <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4">
               {stages.map((stage) => (
                 <div key={stage.name} className="relative text-center">
                   <div className="absolute top-12 left-1/2 -translate-x-1/2 z-10">
-                    <div className="w-8 h-8 bg-accent rounded-full border-4 border-background" />
+                    <div
+                      className="w-8 h-8 rounded-full border-4 border-background"
+                      style={{ backgroundColor: GATE_GREEN }}
+                    />
                   </div>
 
                   <div className="mt-20">

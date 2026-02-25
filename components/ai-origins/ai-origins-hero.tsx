@@ -2,6 +2,7 @@
 
 import { ParticleTextEffect } from "@/components/ui/particle-text-effect"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 // Site blue accent: #4D9DFB
 // ORIGINS teal-green: #00FDCF
@@ -18,16 +19,30 @@ const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
 
 export default function AIOriginsHero() {
   const wordColors = {
+    "THE": hexToRgb("#4D9DFB"), // Site blue
+    "TECH": hexToRgb("#00FDCF"), // Teal-green
     "AI": hexToRgb("#4D9DFB"), // Site blue
     "ORIGINS": hexToRgb("#00FDCF"), // Teal-green
   }
 
   return (
-    <section className="relative w-screen min-h-[85vh] bg-black flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative w-screen min-h-[85vh] flex flex-col items-center justify-center overflow-hidden bg-transparent">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 opacity-95">
+          <Image
+            src="/ai-origins/blackboard-texture-2.png"
+            alt="Chalkboard texture"
+            fill
+            priority
+            className="object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-black/18" />
+      </div>
       {/* Full-bleed particle canvas - covers entire hero with particles flowing throughout */}
       <div className="absolute inset-0 w-full h-full">
         <ParticleTextEffect 
-          words={["AI", "ORIGINS"]}
+          words={["THE", "TECH", "AI", "ORIGINS"]}
           wordColors={wordColors}
           fullBleed={true}
           className="w-full h-full"

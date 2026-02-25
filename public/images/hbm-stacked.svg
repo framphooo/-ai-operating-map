@@ -1,0 +1,30 @@
+<svg width="260" height="220" viewBox="0 0 260 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="slab" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c0c8ce"/>
+      <stop offset="100%" stop-color="#9aa4ad"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e5ecf2"/>
+      <stop offset="100%" stop-color="#b9c4cc"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff9a9e" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#ff6a6a" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#ff9a9e" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+  <rect x="30" y="178" width="200" height="18" rx="4" fill="#6d7a83" />
+  <!-- stacks -->
+  <g stroke="#6e5241" stroke-width="3">
+    <rect x="46" y="36" width="168" height="28" rx="6" fill="url(#slab)" />
+    <rect x="46" y="58" width="168" height="28" rx="6" fill="url(#core)" />
+    <rect x="46" y="80" width="168" height="28" rx="6" fill="url(#slab)" />
+    <rect x="46" y="102" width="168" height="28" rx="6" fill="url(#core)" />
+    <rect x="46" y="124" width="168" height="28" rx="6" fill="url(#slab)" />
+    <rect x="46" y="146" width="168" height="28" rx="6" fill="url(#core)" />
+  </g>
+  <rect x="46" y="110" width="168" height="16" fill="url(#glow)" />
+  <rect x="36" y="26" width="188" height="12" rx="4" fill="#c7d0d6" />
+  <rect x="64" y="14" width="132" height="10" rx="4" fill="#dde4ea" />
+</svg>

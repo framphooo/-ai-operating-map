@@ -47,10 +47,10 @@ export default function Iceberg() {
       className="relative w-full max-w-6xl mx-auto"
       style={{ perspective: "1200px" }}
     >
-      {/* 71% Statistic - Separate callout above */}
+      {/* 75% Statistic - Separate callout above */}
       <div className="text-center mb-12">
-        <div className="text-7xl md:text-8xl font-heading font-bold text-[#4D9DFB] leading-none mb-4">
-          71%
+        <div className="text-7xl md:text-8xl font-heading font-bold text-[#1BC4A6] leading-none mb-4">
+          75%
         </div>
         <p className="text-xl md:text-2xl text-secondary max-w-3xl mx-auto leading-relaxed">
           of enterprises have more AI use cases than they&apos;re able to pursue
@@ -58,6 +58,48 @@ export default function Iceberg() {
         <p className="text-lg text-secondary/80 mt-2 max-w-2xl mx-auto">
           And most of them fail due to poor data
         </p>
+      </div>
+
+      {/* Mindset Shift Table - immediately under stat */}
+      <div className="mb-12">
+        <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg border border-black/5 px-8 md:px-12 py-10">
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1BC4A6] text-white font-semibold uppercase tracking-[0.08em] text-sm">
+              Mindset Shift
+            </div>
+          </div>
+          <div className="grid grid-cols-[1fr_auto_1fr] gap-x-6 md:gap-x-12 gap-y-4 md:gap-y-6 text-lg text-secondary">
+            <div className="font-semibold text-foreground text-xl md:text-2xl">FROM</div>
+            <div className="flex justify-center items-center text-[#1BC4A6] font-bold text-2xl md:text-3xl tracking-[0.15em]">
+              →
+            </div>
+            <div className="font-semibold text-foreground text-right md:text-left text-xl md:text-2xl">TO</div>
+
+            <div>Data as a support asset</div>
+            <div className="flex justify-center items-center text-[#1BC4A6] font-bold text-2xl md:text-3xl tracking-[0.15em]">
+              →
+            </div>
+            <div className="text-right md:text-left">
+              Data as a <span className="font-semibold text-foreground">strategic differentiator</span>
+            </div>
+
+            <div>Governance as compliance</div>
+            <div className="flex justify-center items-center text-[#1BC4A6] font-bold text-2xl md:text-3xl tracking-[0.15em]">
+              →
+            </div>
+            <div className="text-right md:text-left">
+              Governance as <span className="font-semibold text-foreground">enablement and trust</span>
+            </div>
+
+            <div>Static dashboards</div>
+            <div className="flex justify-center items-center text-[#1BC4A6] font-bold text-2xl md:text-3xl tracking-[0.15em]">
+              →
+            </div>
+            <div className="text-right md:text-left">
+              Real-time <span className="font-semibold text-foreground">data observability</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Iceberg Container */}

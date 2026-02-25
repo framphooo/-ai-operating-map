@@ -3,8 +3,6 @@
 import Navigation from "../Navigation";
 import SectionReveal from "../learning/SectionReveal";
 import {
-  ArrowRight,
-  Check,
   Layers,
   Lightbulb,
   ShieldCheck,
@@ -13,20 +11,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { LayoutGroup, motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
-
-const sections = [
-  { id: "hero", label: "Mindset Shift" },
-  { id: "system-view", label: "System View" },
-  { id: "reality-check", label: "Reality Check" },
-  { id: "ai-enabler", label: "AI as Enabler" },
-  { id: "system-model", label: "System Model" },
-  { id: "systems-vs-use-cases", label: "Systems over Use Cases" },
-  { id: "ai-unlocks", label: "What AI Unlocks" },
-  { id: "wrappers", label: "Architecture Wrappers" },
-  { id: "strategic", label: "Why This Matters" },
-  { id: "bridge", label: "Bridge to Checklist" },
-];
+import { useRef, useState } from "react";
 
 const diagramItems = [
   {
@@ -216,19 +201,22 @@ function SystemViewCard({
   showDetailPanel = true,
   showCaption = true,
   showSubtitles = true,
+  layoutId,
 }: {
   variant?: "compact" | "expanded";
   className?: string;
   showDetailPanel?: boolean;
   showCaption?: boolean;
   showSubtitles?: boolean;
+  layoutId?: string;
 }) {
   const [activeBlock, setActiveBlock] = useState<string>(diagramItems[0].id);
   const activeDetail =
     systemBlockDetails.find((item) => item.id === activeBlock) ?? systemBlockDetails[0];
   const isExpanded = variant === "expanded";
   return (
-    <div
+    <motion.div
+      layoutId={layoutId}
       className={`rounded-3xl border border-black/5 bg-white shadow-lg ${
         isExpanded ? "p-8" : "p-6"
       } ${className}`}
@@ -244,11 +232,11 @@ function SystemViewCard({
           </span>
           <Sparkles className={`h-5 w-5 ${isExpanded ? "text-emerald-600" : "text-emerald-500"}`} />
         </div>
-        <div className={`grid grid-cols-1 sm:grid-cols-5 gap-3 ${isExpanded ? "sm:gap-4" : ""}`}>
+        <div className={`grid grid-cols-1 sm:grid-cols-5 gap-3 ${isExpanded ? "sm:gap-5" : ""}`}>
           {diagramItems.map((item) => (
             <div
               key={item.id}
-              className={`group relative rounded-2xl border bg-gradient-to-b from-slate-50 to-white shadow-sm transition-all duration-200 ${
+              className={`group relative flex h-full flex-col justify-between rounded-2xl border bg-gradient-to-b from-slate-50 to-white shadow-sm transition-all duration-200 ${
                 isExpanded ? "p-5 border-black/8" : "p-4 border-black/5"
               }`}
               tabIndex={0}
@@ -256,10 +244,16 @@ function SystemViewCard({
               onFocus={() => setActiveBlock(item.id)}
               onClick={() => setActiveBlock(item.id)}
             >
-              <div className="text-xs font-semibold uppercase tracking-[0.12em] text-secondary">
-                {item.title}
+              <div className="flex-1 space-y-1">
+                <div className="text-xs font-semibold uppercase tracking-[0.12em] text-secondary">
+                  {item.title}
+                </div>
+                {showSubtitles && (
+                  <div className="text-sm text-foreground leading-snug min-h-[42px]">
+                    {item.subtitle}
+                  </div>
+                )}
               </div>
-              {showSubtitles && <div className="mt-1 text-sm text-foreground">{item.subtitle}</div>}
               <div className="absolute inset-y-0 -right-2 flex items-center justify-center">
                 {item.id !== "interface" && (
                   <div className="h-10 w-px bg-gradient-to-b from-transparent via-black/10 to-transparent" />
@@ -292,7 +286,7 @@ function SystemViewCard({
                 <div className="text-xs font-semibold uppercase tracking-[0.14em] text-secondary">
                   {activeDetail.title}
                 </div>
-                <div className="text-sm text-foreground leading-relaxed">{activeDetail.detail}</div>
+                <div className="text-sm text-foreground leading-relaxed max-w-3xl">{activeDetail.detail}</div>
               </div>
               <div className="flex flex-wrap gap-2 sm:max-w-xs">
                 {activeDetail.examples.map((ex) => (
@@ -308,7 +302,7 @@ function SystemViewCard({
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -329,9 +323,9 @@ function SystemViewSection({
       <SectionReveal>
         <motion.div
           style={sectionStyle}
-          className="rounded-3xl border border-black/5 bg-gradient-to-r from-white to-slate-50 p-10 shadow-sm space-y-4 will-change-transform"
+          className="rounded-3xl border border-black/5 bg-gradient-to-r from-white to-slate-50 p-10 shadow-sm space-y-6 will-change-transform"
         >
-          <div className="space-y-2">
+          <div className="space-y-3 max-w-4xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-secondary">
               System View
             </p>
@@ -350,7 +344,12 @@ function SystemViewSection({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            <SystemViewCard variant="expanded" showDetailPanel={true} showCaption={true} />
+            <SystemViewCard
+              layoutId="system-view-card"
+              variant="expanded"
+              showDetailPanel={true}
+              showCaption={true}
+            />
           </motion.div>
         </motion.div>
       </SectionReveal>
@@ -358,90 +357,7 @@ function SystemViewSection({
   );
 }
 
-function DesktopTOC({
-  activeId,
-  onNavigate,
-}: {
-  activeId: string;
-  onNavigate: (id: string) => void;
-}) {
-  return (
-    <div className="hidden xl:block sticky top-24 space-y-2 rounded-2xl border border-black/5 bg-white/60 p-4 shadow-sm backdrop-blur">
-      <div className="text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
-        On this page
-      </div>
-      <div className="flex flex-col gap-1">
-        {sections.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => onNavigate(item.id)}
-            className={`flex items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition-colors ${
-              activeId === item.id
-                ? "bg-emerald-50 text-emerald-800"
-                : "text-secondary hover:bg-black/5 hover:text-foreground"
-            }`}
-          >
-            <span>{item.label}</span>
-            {activeId === item.id && <Check className="h-4 w-4" />}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function MobileTOC({
-  activeId,
-  onNavigate,
-}: {
-  activeId: string;
-  onNavigate: (id: string) => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const activeLabel = useMemo(
-    () => sections.find((s) => s.id === activeId)?.label ?? "On this page",
-    [activeId]
-  );
-  return (
-    <div className="xl:hidden mb-6">
-      <div className="relative">
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="flex w-full items-center justify-between rounded-xl border border-black/5 bg-white px-4 py-3 text-sm font-medium text-foreground shadow-sm"
-        >
-          <span>{activeLabel}</span>
-          <ArrowRight
-            className={`h-4 w-4 transition-transform ${open ? "rotate-90" : ""}`}
-          />
-        </button>
-        {open && (
-          <div className="absolute left-0 right-0 z-10 mt-2 rounded-xl border border-black/5 bg-white shadow-lg">
-            {sections.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => {
-                  onNavigate(item.id);
-                  setOpen(false);
-                }}
-                className={`block w-full px-4 py-3 text-left text-sm transition-colors ${
-                  activeId === item.id
-                    ? "bg-emerald-50 text-emerald-800"
-                    : "text-secondary hover:bg-black/5 hover:text-foreground"
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
 export default function AIMindsetPage() {
-  const [activeSection, setActiveSection] = useState(sections[0].id);
-  const heroCardRef = useRef<HTMLDivElement | null>(null);
   const systemSectionRef = useRef<HTMLElement | null>(null);
 
   // Scroll progress from hero toward the system section
@@ -465,49 +381,18 @@ export default function AIMindsetPage() {
   const sectionScale = useTransform(springProgress, [0, 1], [0.96, 1]);
   const sectionOpacity = useTransform(springProgress, [0, 1], [0, 1]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible.length > 0) {
-          setActiveSection(visible[0].target.id);
-        }
-      },
-      { rootMargin: "-20% 0px -40% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
-    );
-
-    sections.forEach((section) => {
-      const el = document.getElementById(section.id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
   return (
     <div className="min-h-screen bg-white text-foreground">
       <Navigation />
 
-      <main className="pt-24 pb-24">
+      <main className="pt-32 lg:pt-36 pb-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="xl:hidden mb-6">
-            <MobileTOC activeId={activeSection} onNavigate={scrollToSection} />
-          </div>
-          <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,3fr)_minmax(240px,1fr)] gap-10">
+          <LayoutGroup>
             <div className="space-y-24">
               {/* Hero */}
-              <section id="hero" className="scroll-mt-24">
+              <section id="hero" className="scroll-mt-28 lg:scroll-mt-32">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                  <div className="space-y-4">
+                  <div className="space-y-4 max-w-xl">
                     <h1 className="text-4xl md:text-5xl font-heading font-semibold leading-tight text-foreground">
                       AI Mindset: From Products to Systems
                     </h1>
@@ -520,25 +405,24 @@ export default function AIMindsetPage() {
                       comes from understanding the system behind them.
                     </p>
                   </div>
-                  <LayoutGroup>
-                    <div className="relative">
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-tr from-emerald-100 via-white to-emerald-50 rounded-3xl blur-3xl opacity-60"
-                        style={{ y: heroY, scale: heroScale, opacity: heroOpacity }}
+                  <div className="relative lg:ml-auto max-w-[520px]">
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-tr from-emerald-100 via-white to-emerald-50 rounded-3xl blur-3xl opacity-60"
+                      style={{ y: heroY, scale: heroScale, opacity: heroOpacity }}
+                    />
+                    <motion.div
+                      style={{ y: heroY, scale: heroScale, opacity: heroOpacity }}
+                      transition={{ type: "spring", stiffness: 200, damping: 28, mass: 0.6 }}
+                    >
+                      <SystemViewCard
+                        layoutId="system-view-card"
+                        variant="compact"
+                        showDetailPanel={false}
+                        showCaption={false}
+                        showSubtitles={false}
                       />
-                      <motion.div
-                        style={{ y: heroY, scale: heroScale, opacity: heroOpacity }}
-                        transition={{ type: "spring", stiffness: 200, damping: 28, mass: 0.6 }}
-                      >
-                        <SystemViewCard
-                          variant="compact"
-                          showDetailPanel={false}
-                          showCaption={false}
-                          showSubtitles={false}
-                        />
-                      </motion.div>
-                    </div>
-                  </LayoutGroup>
+                    </motion.div>
+                  </div>
                 </div>
 
                 <div className="mt-10">
@@ -561,7 +445,7 @@ export default function AIMindsetPage() {
                 <div className="mt-8">
                   <div className="rounded-2xl border border-black/5 bg-emerald-50/60 px-5 py-4 shadow-sm">
                     <p className="text-sm font-semibold text-emerald-900">
-                      Board directive: system map first or stop. Without it, every AI
+                      LT directive: system map first or stop. Without it, every AI
                       initiative stays fragile regardless of model or tooling. Everything
                       that follows is evidence for that decision, not parallel ideas.
                     </p>
@@ -945,11 +829,7 @@ export default function AIMindsetPage() {
                 </SectionReveal>
               </section>
             </div>
-
-            <div>
-              <DesktopTOC activeId={activeSection} onNavigate={scrollToSection} />
-            </div>
-          </div>
+          </LayoutGroup>
         </div>
       </main>
     </div>

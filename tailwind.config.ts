@@ -12,7 +12,7 @@ const config: Config = {
         background: "#F4F3F5",
         foreground: "#111111",
         secondary: "#4B4B4B",
-        accent: "#4D9DFB",
+        accent: "#1BC4A6",
         card: "rgba(255, 255, 255, 0.9)",
       },
       fontFamily: {

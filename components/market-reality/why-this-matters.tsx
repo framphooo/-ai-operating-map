@@ -49,8 +49,8 @@ export default function WhyThisMatters() {
                 className="text-center"
               >
                 <div className="mb-6">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-foreground/5 flex items-center justify-center">
-                    <span className="text-2xl font-heading font-bold text-foreground">1</span>
+                  <div className="w-16 h-16 mx-auto rounded-full border border-emerald-200 bg-emerald-100 flex items-center justify-center">
+                    <span className="text-xl font-heading font-semibold text-emerald-800">1</span>
                   </div>
                 </div>
                 <h4 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
@@ -70,8 +70,8 @@ export default function WhyThisMatters() {
                 className="text-center"
               >
                 <div className="mb-6">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-foreground/5 flex items-center justify-center">
-                    <span className="text-2xl font-heading font-bold text-foreground">2</span>
+                  <div className="w-16 h-16 mx-auto rounded-full border border-emerald-200 bg-emerald-100 flex items-center justify-center">
+                    <span className="text-xl font-heading font-semibold text-emerald-800">2</span>
                   </div>
                 </div>
                 <h4 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
@@ -91,8 +91,8 @@ export default function WhyThisMatters() {
                 className="text-center"
               >
                 <div className="mb-6">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-foreground/5 flex items-center justify-center">
-                    <span className="text-2xl font-heading font-bold text-foreground">3</span>
+                  <div className="w-16 h-16 mx-auto rounded-full border border-emerald-200 bg-emerald-100 flex items-center justify-center">
+                    <span className="text-xl font-heading font-semibold text-emerald-800">3</span>
                   </div>
                 </div>
                 <h4 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">

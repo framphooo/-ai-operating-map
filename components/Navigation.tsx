@@ -19,7 +19,7 @@ export default function Navigation() {
 
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/origins", label: "AI Origins" },
+    { href: "/origins", label: "The Tech" },
     { href: "/market-reality", label: "Market Reality" },
     { href: "/what-works", label: "What Works" },
     { href: "/ai-mindset", label: "AI Mindset" },

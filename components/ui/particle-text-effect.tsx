@@ -328,8 +328,9 @@ export function ParticleTextEffect({
     const ctx = canvas.getContext("2d")!
     const particles = particlesRef.current
 
-    // Background with motion blur
-    ctx.fillStyle = "rgba(0, 0, 0, 0.1)"
+    // Clear and apply a very light trail so the background image stays visible
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.fillStyle = "rgba(0, 0, 0, 0.025)"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     // Update and draw particles
@@ -433,7 +434,7 @@ export function ParticleTextEffect({
       <canvas
         ref={canvasRef}
         className={fullBleed ? 'w-full h-full' : 'w-full h-auto'}
-        style={{ display: "block" }}
+        style={{ display: "block", backgroundColor: "transparent" }}
       />
     </div>
   )
