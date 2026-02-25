@@ -105,7 +105,7 @@ export default function ExpectationMismatch() {
               <div className="text-sm text-foreground/60">
                 <div>Source: McKinsey &amp; Company</div>
                 <a
-                  href="#"
+                  href="https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work"
                   className="text-primary underline underline-offset-4 font-medium"
                 >
                   Link
@@ -134,7 +134,7 @@ export default function ExpectationMismatch() {
               <div className="text-sm text-foreground/60">
                 <div>Source: Boston Consulting Group</div>
                 <a
-                  href="#"
+                  href="https://docs.google.com/presentation/d/1-UsPTZsk1XIge6l2k2ne3DZ_4ML1lj813R1WOa3UTgY/edit?slide=id.g39b343267ec_0_2460#slide=id.g39b343267ec_0_2460"
                   className="text-primary underline underline-offset-4 font-medium"
                 >
                   Link
