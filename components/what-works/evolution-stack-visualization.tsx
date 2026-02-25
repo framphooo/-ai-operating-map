@@ -19,14 +19,16 @@ export default function EvolutionStackVisualization() {
 
       <div className="relative w-full max-w-6xl mx-auto px-4">
         <div className="relative rounded-3xl border border-black/5 bg-white shadow-xl shadow-slate-200/50 overflow-hidden">
-          <div className="relative aspect-[2.1/1] max-h-[520px] pt-4 pb-2">
+          <div className="relative w-full pt-4 pb-2">
             <Image
               src="/what-works/evolution-arc.png"
               alt="AI evolution arc"
-              fill
-              sizes="(max-width: 768px) 100vw, 1200px"
-              className="object-contain"
+              width={1212}
+              height={615}
+              sizes="(max-width: 768px) 100vw, (max-width: 1440px) 80vw, 1400px"
+              quality={95}
               priority
+              className="w-full h-auto object-contain"
               style={{ objectPosition: "55% center" }}
             />
           </div>
