@@ -219,13 +219,16 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="relative rounded-2xl border border-black/5 bg-white shadow-md overflow-hidden">
-                  <div className="relative aspect-[2.1/1] max-h-[420px]">
+                  <div className="relative w-full">
                     <Image
                       src="/what-works/evolution-arc.png"
                       alt="AI evolution arc"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 1200px"
-                      className="object-contain"
+                      width={1212}
+                      height={615}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1440px) 80vw, 1400px"
+                      quality={95}
+                      priority
+                      className="w-full h-auto object-contain"
                       style={{ objectPosition: "65% center" }}
                     />
                   </div>
